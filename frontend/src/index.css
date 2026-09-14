@@ -1,0 +1,20 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #fff;
+  color: white;
+}
+
+.app-layout {
+  display: flex;
+}
+
+.main-content {
+  color: #000;
+  flex: 1;
+  padding: 30px;
+}
