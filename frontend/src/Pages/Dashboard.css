@@ -1,57 +1,73 @@
-.dashboard {
-  padding: 30px;
-}
+.dashboard { width: min(100%, 1560px); margin: 0 auto; padding: 34px clamp(18px, 3vw, 46px) 48px; }
+.dashboard-header { display: flex; align-items: flex-end; justify-content: space-between; gap: 22px; margin-bottom: 25px; }
+.eyebrow { display: block; color: var(--color-secondary); font-size: 9px; font-weight: 800; letter-spacing: .15em; }
+.dashboard-header h1 { margin: 9px 0 0; color: var(--color-text); font-size: clamp(25px, 3vw, 33px); font-weight: 650; letter-spacing: -.045em; }
+.dashboard-header h1 span { display: inline-block; font-size: .7em; }
+.dashboard-header p { margin: 8px 0 0; color: var(--color-muted); font-size: 12px; line-height: 1.6; }
+.dashboard-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 9px; }
+.district-badge, .map-badge { height: 32px; gap: 8px; padding: 0 11px; color: #c5d1c4; border-color: rgb(245 238 210 / 13%); font-size: 10px; }
+.district-badge > span, .map-badge > span { display: inline-block; width: 6px; height: 6px; background: var(--color-secondary); border-radius: 50%; box-shadow: 0 0 0 3px rgb(88 156 128 / 13%); }
+.api-badge { height: 30px; gap: 8px; padding: 0 10px; font-size: 9px; }
+.api-badge > span { display: inline-block; width: 6px; height: 6px; border-radius: 50%; }
+.api-badge--connected { color: #c5d1c4; border-color: rgb(88 156 128 / 22%); background: rgb(88 156 128 / 7%); }
+.api-badge--connected > span { background: var(--color-secondary); }
+.api-badge--loading { color: #e3c77f; border-color: rgb(235 174 41 / 22%); }
+.api-badge--loading > span { background: var(--color-accent); animation: status-pulse 1.2s ease-in-out infinite; }
+.api-badge--offline { color: #f0a299; border-color: rgb(220 102 90 / 25%); background: rgb(220 102 90 / 7%); }
+.api-badge--offline > span { background: #dc665a; }
+.retry-button { height: 30px; gap: 6px; padding-inline: 8px; color: var(--color-muted); font-size: 10px; }
+.retry-button:hover { color: var(--color-text); }
+@keyframes status-pulse { 50% { opacity: .35; } }
+.explore-button { height: 36px; gap: 9px; padding-inline: 14px; color: #132228; background: var(--color-accent); border-radius: 10px; font-size: 11px; font-weight: 700; box-shadow: 0 4px 14px rgb(235 174 41 / 13%); }
+.explore-button:hover { background: #f3bd49; }
 
-.dashboard-header h1 {
-  margin: 0;
-  font-size: 28px;
-}
+.stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 13px; }
+.stat-card { min-width: 0; min-height: 136px; color: var(--color-text); background: linear-gradient(145deg, rgb(255 255 255 / 3%), transparent 75%), #1a2b30; border: 1px solid rgb(245 238 210 / 9%); border-radius: 15px; box-shadow: 0 8px 22px rgb(0 0 0 / 7%); }
+.stat-card-header { display: flex; min-height: auto; grid-template-columns: 1fr auto; align-items: center; padding: 16px 17px 0; }
+.stat-card [data-slot="card-title"] { color: #c2cec3; font-size: 11px; font-weight: 600; }
+.stat-card [data-slot="card-action"] { grid-column: 2; grid-row: 1; }
+.stat-icon { display: grid; place-items: center; width: 30px; height: 30px; color: var(--card-accent); background: color-mix(in srgb, var(--card-accent) 13%, transparent); border: 1px solid color-mix(in srgb, var(--card-accent) 20%, transparent); border-radius: 9px; }
+.stat-card-content { display: grid; gap: 5px; padding: 8px 17px 15px; }
+.stat-card-content > strong { color: var(--color-text); font-size: 30px; font-weight: 650; letter-spacing: -.05em; line-height: 1.05; }
+.stat-card [data-slot="card-description"] { color: #91a39a; font-size: 10px; }
+.stat-card--gold { --card-accent: #ebae29; }
+.stat-card--green { --card-accent: #589c80; }
+.stat-card--cream { --card-accent: #f5eed2; }
+.stat-card--muted { --card-accent: #a8b6ab; }
 
-.dashboard-header p {
-  color: #78939b;
-  margin-top: 8px;
-}
+.map-section { margin-top: 22px; scroll-margin-top: 18px; }
+.map-card { overflow: hidden; color: var(--color-text); background: #192a30; border-radius: 16px; box-shadow: 0 14px 36px rgb(0 0 0 / 10%); }
+.map-heading { display: flex; min-height: 83px; grid-template-columns: minmax(0, 1fr) auto; align-items: center; padding: 15px 19px; }
+.map-heading [data-slot="card-action"] { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+.map-heading [data-slot="card-title"] { margin-top: 5px; color: var(--color-text); font-size: 16px; font-weight: 650; letter-spacing: -.02em; }
+.map-heading [data-slot="card-description"] { margin-top: 4px; color: var(--color-muted); font-size: 10px; }
+.map-badge { color: #d8dfc9; background: rgb(88 156 128 / 8%); border-color: rgb(88 156 128 / 18%); }
+.map-canvas { height: clamp(330px, 46vh, 560px); background: #d6ddd2; scroll-margin-top: 20px; }
+.map-loading { display: grid; width: 100%; height: 100%; place-items: center; color: #51655d; background: linear-gradient(110deg, #dce3d8 8%, #e7ebe2 18%, #dce3d8 33%); background-size: 200% 100%; animation: map-loading 1.2s ease-in-out infinite; font-size: 12px; }
+@keyframes map-loading { to { background-position-x: -200%; } }
+.map-footer { display: flex; justify-content: space-between; gap: 12px; padding: 10px 17px; color: #9eafa5; font-size: 9px; }
+.map-footer a { display: inline-flex; align-items: center; gap: 4px; color: #bbcab9; text-decoration: none; }
+.map-footer a:hover { color: var(--color-accent); }
 
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-  margin-top: 28px;
+@media (max-width: 1020px) { .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) {
+  .dashboard { padding: 23px 15px 30px; }
+  .dashboard-header { align-items: flex-start; flex-direction: column; gap: 15px; margin-bottom: 19px; }
+  .dashboard-header p { max-width: 38ch; }
+  .dashboard-actions { width: 100%; justify-content: space-between; }
+  .stats-grid { gap: 9px; }
+  .stat-card { min-height: 123px; border-radius: 13px; }
+  .stat-card-header { padding: 13px 12px 0; }
+  .stat-card [data-slot="card-title"] { font-size: 10px; }
+  .stat-card-content { padding: 7px 12px 13px; }
+  .stat-card-content > strong { font-size: 27px; }
+  .stat-card [data-slot="card-description"] { font-size: 9px; }
+  .map-section { margin-top: 15px; }
+  .map-heading { min-height: 80px; padding: 14px; }
+  .map-heading [data-slot="card-description"] { max-width: 27ch; line-height: 1.4; }
+  .map-badge { padding: 0 8px; font-size: 9px; }
+  .map-canvas { height: 380px; }
+  .map-footer { font-size: 8px; }
 }
-
-.stat-card {
-  background: #071b23;
-  border: 1px solid #12343d;
-  border-radius: 12px;
-  padding: 20px;
-}
-
-.stat-card span,
-.stat-card small {
-  display: block;
-  color: #78939b;
-}
-
-.stat-card strong {
-  display: block;
-  font-size: 30px;
-  margin: 12px 0;
-  color: #00d9ff;
-}
-
-.map-preview {
-  height: 430px;
-  margin-top: 24px;
-  background: #071b23;
-  border: 1px solid #12343d;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.map-preview h2 {
-  margin-bottom: 8px;
-}
-
-.map-preview p {
-  color: #78939b;
-}
+@media (max-width: 360px) { .stats-grid { grid-template-columns: 1fr; } .stat-card { min-height: 110px; } .district-badge { padding-inline: 8px; font-size: 9px; } .explore-button { padding-inline: 10px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; } }

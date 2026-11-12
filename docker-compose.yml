@@ -1,0 +1,20 @@
+services:
+  database:
+    image: postgis/postgis:17-3.7
+    container_name: abj-gis-postgis
+    environment:
+      POSTGRES_DB: abidjan_gis
+      POSTGRES_USER: abj_gis
+      POSTGRES_PASSWORD: abj_gis_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - abj_gis_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U abj_gis -d abidjan_gis"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  abj_gis_postgres_data:
